@@ -1,5 +1,5 @@
 let tiles = [
-  { id: "C_full", name: "完全都市（四辺都市）", max: 1, count: 1 },
+  { id: "C_full", name: "都市（4辺）", max: 1, count: 1 },
   { id: "C_3sides", name: "都市（3辺）", max: 3, count: 3 },
   { id: "C_2sides", name: "都市（2辺）", max: 3, count: 3 },
   { id: "C_1side", name: "都市（1辺）", max: 5, count: 5 },
