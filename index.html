@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>カルカソンヌ タイルカウンター</title>
+  <title>カルカソンヌ 残りタイルカウンター</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>カルカソンヌ 残りタイルカウンター</h1>
-  <div id="tiles"></div>
+  <header>
+    <h1>カルカソンヌ 残りタイルカウンター</h1>
+    <p class="subtitle">基本セット用（タイルをタップすると残数が減ります）</p>
+  </header>
 
-  <button id="undo">Undo</button>
-  <button id="reset">リセット</button>
+  <main>
+    <section class="controls">
+      <button id="undo">1手戻す（Undo）</button>
+      <button id="reset">全リセット</button>
+    </section>
+
+    <section id="summary">
+      <div>残りタイル合計：<span id="totalCount">0</span> / <span id="totalMax">0</span></div>
+    </section>
+
+    <section id="tiles"></section>
+  </main>
+
+  <footer>
+    <p>ブラウザに自動保存されます（localStorage使用）</p>
+  </footer>
 
   <script src="app.js"></script>
 </body>
