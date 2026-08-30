@@ -27,13 +27,24 @@ let tiles = [
   { id: "S_start", name: "スタートタイル", max: 1, count: 1, img: "img/S_start.png" }
 ];
 
+　const DATA_VERSION = 2;
+
 // LocalStorage 読み込み
 const saved = localStorage.getItem("carcassonne_tiles");
 if (saved) {
   try {
     const parsed = JSON.parse(saved);
-    if (Array.isArray(parsed)) tiles = parsed;
-  } catch (e) {}
+
+    // version が一致している場合のみ読み込む
+    if (parsed.version === DATA_VERSION && Array.isArray(parsed.tiles)) {
+      tiles = parsed.tiles;
+    } else {
+      // 古いデータは破棄
+      localStorage.removeItem("carcassonne_tiles");
+    }
+  } catch (e) {
+    console.warn("保存データの読み込みに失敗しました", e);
+  }
 }
 
 let history = [];
