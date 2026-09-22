@@ -28,12 +28,14 @@ let tiles = [
   { id: "S_start", name: "スタートタイル", max: 1, count: 1 }
 ];
 
-// ★ LocalStorage 読み込み（versionチェックなし）
+// ★ LocalStorage 読み込み（空配列を読み込まない）
 const saved = localStorage.getItem("carcassonne_tiles");
 if (saved) {
   try {
     const parsed = JSON.parse(saved);
-    if (Array.isArray(parsed)) {
+
+    // ★ 空配列を読み込まない（ここが最重要）
+    if (Array.isArray(parsed) && parsed.length > 0) {
       tiles = parsed;
     }
   } catch (e) {
