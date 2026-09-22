@@ -1,4 +1,4 @@
-// ★ 公式72枚のタイル（画像なし版）
+// ★ 画像なし版タイル（72枚）
 let tiles = [
   { id: "C_full", name: "完全都市（四辺都市）", max: 1, count: 1 },
   { id: "C_3sides", name: "都市（3辺）", max: 3, count: 3 },
@@ -28,19 +28,13 @@ let tiles = [
   { id: "S_start", name: "スタートタイル", max: 1, count: 1 }
 ];
 
-// ★ データバージョン（画像なし版として新規扱い）
-const DATA_VERSION = 3;
-
-// ★ LocalStorage 読み込み（壊れたデータを防ぐ）
+// ★ LocalStorage 読み込み（versionチェックなし）
 const saved = localStorage.getItem("carcassonne_tiles");
 if (saved) {
   try {
     const parsed = JSON.parse(saved);
-
-    if (parsed.version === DATA_VERSION && Array.isArray(parsed.tiles)) {
-      tiles = parsed.tiles;
-    } else {
-      localStorage.removeItem("carcassonne_tiles");
+    if (Array.isArray(parsed)) {
+      tiles = parsed;
     }
   } catch (e) {
     console.warn("保存データの読み込みに失敗しました", e);
@@ -90,10 +84,7 @@ function render() {
 }
 
 function save() {
-  localStorage.setItem("carcassonne_tiles", JSON.stringify({
-    version: DATA_VERSION,
-    tiles: tiles
-  }));
+  localStorage.setItem("carcassonne_tiles", JSON.stringify(tiles));
 }
 
 document.getElementById("undo").onclick = () => {
